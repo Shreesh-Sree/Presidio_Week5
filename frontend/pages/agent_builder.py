@@ -6,7 +6,7 @@ import json
 import streamlit as st
 import httpx
 
-from frontend.components.ui import page_header, glass_card, metric_card
+from frontend.components.ui import page_header, glass_card, metric_card, status_badge
 
 API_BASE = "http://localhost:8000"
 
