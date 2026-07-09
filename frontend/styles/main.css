@@ -1,0 +1,500 @@
+/* ============================================================
+   AlgoQX Studio -- Master Stylesheet
+   Design: Minimal, Professional, Dark Mode
+   Inspired by: Anthropic, Vercel, Linear, Cursor
+   ============================================================ */
+
+/* -- CSS Variables -- */
+:root {
+    --bg-primary: #0a0a0f;
+    --bg-secondary: #111118;
+    --bg-card: rgba(255, 255, 255, 0.03);
+    --bg-card-hover: rgba(255, 255, 255, 0.06);
+    --bg-elevated: rgba(255, 255, 255, 0.05);
+    --accent: #6366f1;
+    --accent-hover: #818cf8;
+    --accent-glow: rgba(99, 102, 241, 0.15);
+    --cyan: #06b6d4;
+    --green: #10b981;
+    --yellow: #f59e0b;
+    --red: #ef4444;
+    --purple: #a855f7;
+    --text-primary: #e2e8f0;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --border: rgba(255, 255, 255, 0.06);
+    --border-hover: rgba(255, 255, 255, 0.12);
+    --radius: 12px;
+    --radius-sm: 8px;
+    --radius-lg: 16px;
+    --shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.5);
+    --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+/* -- Import Fonts -- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+/* -- Global Reset -- */
+.stApp {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    background-color: var(--bg-primary) !important;
+}
+
+/* -- Hide Streamlit Defaults -- */
+#MainMenu { visibility: hidden; }
+footer { visibility: hidden; }
+header[data-testid="stHeader"] {
+    background: transparent !important;
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+}
+
+/* -- Sidebar Styling -- */
+section[data-testid="stSidebar"] {
+    background: var(--bg-secondary) !important;
+    border-right: 1px solid var(--border) !important;
+}
+
+section[data-testid="stSidebar"] .stMarkdown h1 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: var(--text-primary);
+    padding: 0;
+    margin-bottom: 0.25rem;
+}
+
+section[data-testid="stSidebar"] .stMarkdown p {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 0;
+}
+
+/* -- Sidebar Radio Buttons as Nav -- */
+section[data-testid="stSidebar"] .stRadio > div {
+    gap: 2px !important;
+}
+
+section[data-testid="stSidebar"] .stRadio label {
+    background: transparent !important;
+    border: none !important;
+    border-radius: var(--radius-sm) !important;
+    padding: 8px 12px !important;
+    font-size: 0.875rem !important;
+    font-weight: 500 !important;
+    color: var(--text-secondary) !important;
+    transition: var(--transition) !important;
+    cursor: pointer !important;
+}
+
+section[data-testid="stSidebar"] .stRadio label:hover {
+    background: var(--bg-card-hover) !important;
+    color: var(--text-primary) !important;
+}
+
+section[data-testid="stSidebar"] .stRadio label[data-checked="true"],
+section[data-testid="stSidebar"] .stRadio label[aria-checked="true"] {
+    background: var(--accent-glow) !important;
+    color: var(--accent) !important;
+}
+
+/* -- Card Component -- */
+.glass-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    transition: var(--transition);
+}
+
+.glass-card:hover {
+    border-color: var(--border-hover);
+    background: var(--bg-card-hover);
+    box-shadow: var(--shadow);
+}
+
+/* -- Metric Card -- */
+.metric-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    transition: var(--transition);
+}
+
+.metric-card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 0 20px var(--accent-glow);
+    transform: translateY(-2px);
+}
+
+.metric-card .metric-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+}
+
+.metric-card .metric-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.03em;
+    line-height: 1;
+}
+
+.metric-card .metric-delta {
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin-top: 8px;
+}
+
+.metric-card .metric-delta.positive { color: var(--green); }
+.metric-card .metric-delta.negative { color: var(--red); }
+
+/* -- Section Headers -- */
+.section-header {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.03em;
+    margin: 2rem 0 1rem 0;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.section-subtitle {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin-top: -0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* -- Buttons -- */
+.stButton > button {
+    background: linear-gradient(135deg, var(--accent), #818cf8) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: var(--radius-sm) !important;
+    padding: 0.5rem 1.5rem !important;
+    font-weight: 600 !important;
+    font-size: 0.875rem !important;
+    letter-spacing: 0.01em;
+    transition: var(--transition) !important;
+    box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3) !important;
+}
+
+.stButton > button:hover {
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 16px rgba(99, 102, 241, 0.4) !important;
+}
+
+.stButton > button:active {
+    transform: translateY(0) !important;
+}
+
+/* -- Text Inputs -- */
+.stTextInput > div > div > input,
+.stTextArea > div > div > textarea {
+    background: var(--bg-card) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: var(--radius-sm) !important;
+    color: var(--text-primary) !important;
+    font-family: 'Inter', sans-serif !important;
+    transition: var(--transition) !important;
+}
+
+.stTextInput > div > div > input:focus,
+.stTextArea > div > div > textarea:focus {
+    border-color: var(--accent) !important;
+    box-shadow: 0 0 0 3px var(--accent-glow) !important;
+}
+
+/* -- Select Boxes -- */
+.stSelectbox > div > div {
+    background: var(--bg-card) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: var(--radius-sm) !important;
+}
+
+/* -- Tabs -- */
+.stTabs [data-baseweb="tab-list"] {
+    gap: 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.stTabs [data-baseweb="tab"] {
+    color: var(--text-secondary) !important;
+    font-weight: 500 !important;
+    font-size: 0.875rem !important;
+    border-bottom: 2px solid transparent !important;
+    padding: 12px 20px !important;
+    transition: var(--transition) !important;
+}
+
+.stTabs [data-baseweb="tab"]:hover {
+    color: var(--text-primary) !important;
+}
+
+.stTabs [aria-selected="true"] {
+    color: var(--accent) !important;
+    border-bottom-color: var(--accent) !important;
+}
+
+/* -- Expanders -- */
+.streamlit-expanderHeader {
+    background: var(--bg-card) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: var(--radius-sm) !important;
+    color: var(--text-primary) !important;
+    font-weight: 500 !important;
+}
+
+/* -- Code Blocks -- */
+.stCodeBlock {
+    border: 1px solid var(--border) !important;
+    border-radius: var(--radius-sm) !important;
+}
+
+/* -- Progress Bar -- */
+.stProgress > div > div > div {
+    background: linear-gradient(90deg, var(--accent), var(--cyan)) !important;
+    border-radius: 4px !important;
+}
+
+/* -- Divider -- */
+hr {
+    border-color: var(--border) !important;
+    margin: 2rem 0 !important;
+}
+
+/* -- Status Badge -- */
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+.status-badge.success {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--green);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.status-badge.warning {
+    background: rgba(245, 158, 11, 0.1);
+    color: var(--yellow);
+    border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.status-badge.error {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--red);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.status-badge.info {
+    background: rgba(99, 102, 241, 0.1);
+    color: var(--accent);
+    border: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+/* -- Token Display -- */
+.token-display {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 3px;
+    padding: 16px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    line-height: 2;
+}
+
+.token {
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    cursor: default;
+    transition: var(--transition);
+}
+
+.token:hover {
+    transform: scale(1.05);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* -- Chunk Card (RAG) -- */
+.chunk-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    margin-bottom: 12px;
+    transition: var(--transition);
+    position: relative;
+}
+
+.chunk-card:hover {
+    border-color: var(--accent);
+}
+
+.chunk-card .chunk-rank {
+    position: absolute;
+    top: -8px;
+    left: 12px;
+    background: var(--accent);
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 100px;
+}
+
+.chunk-card .chunk-score {
+    font-size: 0.75rem;
+    color: var(--cyan);
+    font-weight: 600;
+    font-family: var(--font-mono);
+}
+
+/* -- Threat Card (Security) -- */
+.threat-card {
+    background: var(--bg-card);
+    border-left: 3px solid var(--red);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+}
+
+.threat-card.low { border-left-color: var(--yellow); }
+.threat-card.medium { border-left-color: #f97316; }
+.threat-card.high { border-left-color: var(--red); }
+.threat-card.critical { border-left-color: #dc2626; }
+
+/* -- Agent Node -- */
+.agent-node {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 12px 16px;
+    min-width: 140px;
+    text-align: center;
+    transition: var(--transition);
+    cursor: grab;
+}
+
+.agent-node:hover {
+    border-color: var(--accent);
+    box-shadow: 0 0 16px var(--accent-glow);
+}
+
+.agent-node.active {
+    border-color: var(--green);
+    box-shadow: 0 0 16px rgba(16, 185, 129, 0.2);
+}
+
+/* -- Fade-in Animation -- */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-in {
+    animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* -- Slide-up Animation -- */
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.slide-up {
+    animation: slideUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* -- Pulse Animation -- */
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.pulse { animation: pulse 2s ease-in-out infinite; }
+
+/* -- Gradient Text -- */
+.gradient-text {
+    background: linear-gradient(135deg, var(--accent), var(--cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* -- Logo Mark -- */
+.logo-mark {
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.05em;
+}
+
+/* -- Plotly Chart Backgrounds -- */
+.js-plotly-plot .plotly .main-svg {
+    background: transparent !important;
+}
+
+/* -- Scrollbar -- */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted);
+}
+
+/* -- Responsive Grid Helpers -- */
+.grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+@media (max-width: 768px) {
+    .grid-2, .grid-3, .grid-4 {
+        grid-template-columns: 1fr;
+    }
+}

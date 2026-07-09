@@ -1,0 +1,27 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
+    environment:
+      - LLM_BASE_URL=https://ollama.algoqx.tech/v1
+      - LLM_API_KEY=sk-ollama-algoqx-2024
+      - LLM_DEFAULT_MODEL=llama3.1:8b
+      - DATABASE_URL=sqlite+aiosqlite:///./data/algoqx.db
+    restart: always
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    ports:
+      - "8501:8501"
+    environment:
+      - API_BASE=http://backend:8000
+    depends_on:
+      - backend
+    restart: always

@@ -1,0 +1,73 @@
+[project]
+name = "algoqx-studio"
+version = "1.0.0"
+description = "The Operating System for Enterprise AI"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+
+dependencies = [
+    # -- Backend Core --
+    "fastapi>=0.115.0",
+    "uvicorn[standard]>=0.34.0",
+    "pydantic>=2.10.0",
+    "pydantic-settings>=2.7.0",
+    "python-dotenv>=1.0.0",
+    "httpx>=0.28.0",
+    "python-multipart>=0.0.20",
+
+    # -- Database --
+    "sqlalchemy>=2.0.36",
+    "aiosqlite>=0.20.0",
+
+    # -- AI / LLM --
+    "openai>=1.60.0",
+    "langchain>=0.3.14",
+    "langchain-openai>=0.3.1",
+    "langchain-community>=0.3.14",
+    "langgraph>=0.2.60",
+    "tiktoken>=0.8.0",
+
+    # -- Embeddings & Vector DB --
+    "sentence-transformers>=3.3.0",
+    "faiss-cpu>=1.9.0",
+
+    # -- RAG / Document Processing --
+    "pypdf>=5.0.0",
+    "python-docx>=1.1.0",
+    "beautifulsoup4>=4.12.0",
+    "markdownify>=0.14.0",
+
+    # -- Frontend --
+    "streamlit>=1.41.0",
+    "plotly>=5.24.0",
+    "streamlit-agraph>=0.0.45",
+    "streamlit-option-menu>=0.4.0",
+    "extra-streamlit-components>=0.1.71",
+
+
+
+    # -- Utilities --
+    "numpy>=1.26.0",
+    "pandas>=2.2.0",
+    "scikit-learn>=1.6.0",
+    "requests>=2.32.0",
+    "uuid7>=0.1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "ruff>=0.8.0",
+    "pytest-asyncio>=0.24.0",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W"]
+
+[tool.setuptools]
+packages = ["backend", "frontend"]
